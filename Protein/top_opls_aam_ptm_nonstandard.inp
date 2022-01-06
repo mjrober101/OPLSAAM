@@ -1,0 +1,1210 @@
+*>>>>>>>> OPLS-AA/M All-atom Toplogy File for Proteins, <<<<<<<<
+*>>>>>>>>>>>>>>> Nucleosides and Nucleotides <<<<<<<<<<<<<<<<<<<
+*>>>>>>>>>>>>>>>>>>>>>>>>  Jan 2017  <<<<<<<<<<<<<<<<<<<<<<<<<<<
+*>>>>>>>>>>> Edited by M.J. Robertson to OPLS-AA/M <<<<<<<<<<<<<
+*>>>>>>>>>>>>>>>>  email: michael.robertson at yale.edu  <<<<<<<
+*
+40 1
+
+!README for CHARMM topology/parameter files for OPLS-AA/M
+!top_opls_aam_na.inp and par_opls_aam_na.inp
+!** reference for OPLS-AA for proteins: 
+!** Jorgensen, W.L. et al., J. Am. Chem. Soc. 118:11225-11236 (1996) 
+!** reference for OPLS-AA/M:
+!** Robertson, M.J. et al., J. Chem. Theory Comput., (2015)
+!** reference for OPLS-AA nucleosides and nucleotides
+!** Robertson, M.J., et al., Chem. Phys. Lett., (2017)
+!and see additional reference below
+!
+!NB: The nucleoside and nucleotide parameters are currently not suitable
+!for DNA or RNA.  The majority of parameters for the phosphodiester linkage
+!are not available, such that the biopolymers cannot be simulated.
+!
+!PLEASE ENSURE USE OF PROPER LJ COMBINING RULES AND 1-4 SCALING TO ENSURE
+!PROPER IMPLEMENTATION OF THE OPLS-AA/M FORCE FIELD
+!
+
+!Proper usage of these files requires CHARMM software version c28b1 or greater.
+!If you are presently using c28b1, please check that you have the latest release,
+!as not all of the pertinant code was included in the initial release, but was 
+!included in a later bugfix.  Compilation of CHARMM requires that the OPLS
+!keyword be included in pref.dat at compile time.  The relevant code has added 
+!the ability to combine Lennard-Jones radii with a geometric average, and use 
+!V2-Fourier terms for improper dihedrals.  The CHARMM program compiled with the 
+!OPLS option in pref.dat can still use all other previously released topology and
+!parameter files (CHARMM22, CHARMM19, etc.).
+!
+!Atom and residue names in the OPLS-AA topology file agree with that in CHARMM22.
+!Consequently, any CHARMM script that reads CHARMM22 topology and parameter files
+!can be converted to using OPLS-AA by adjusting the appropriate file OPEN
+!statements.  The atom types have the OPLS atom type embedded within them for
+!easy cross-reference.  For example, type H140 in opls.rtf and opls.prm is 
+!type 140 the OPLS-AA parameter files available from Prof. Jorgensen.
+!
+!The topology and parameter files here include only the protein portion of the
+!OPLS-AA force field.  User-defined topology and parameter files are required for
+!other functionalities.
+!
+!While the OPLS-AA topology and parameter files are compatible with all
+!functionality within CHARMM that is also compatible with CHARMM22, minimizations
+!and simulations with a distance-dependent dielectric (RDIE) is not recommended 
+!as collapse of atoms with hydrogens on heteroatoms is possible, causing
+!unreasonable structures and energies.  Also, there is no current 
+!optimzied parameter set for the linearized form of the Generalized Born equation
+!as currently implemented in CHARMM.
+!
+!**** OPLS-AA is developed in the laboratory of: 
+!**** Prof. W.L. Jorgensen
+!**** Dept. of Chemistry
+!**** Yale University
+!
+!**** Files checked by adm jr. 2017/1
+!
+!Additional References
+!
+!OPLS All-Atom Model for Amines: Resolution of the Amine Hydration
+!Problem. R. C. Rizzo and W. L. Jorgensen, J. Am. Chem. Soc., 121,
+!4827-4836 (1999).
+!
+!Gas-Phase and Liquid-State Properties of Esters, Nitriles, and Nitro
+!Compounds with the OPLS-AA Force Field. M. L. P. Price, D. Ostrovsky,
+!and W. L. Jorgensen, J. Comput. Chem., 22, 1340-1352 (2001).
+!
+!Evaluation and Reparameterization of the OPLS-AA Force Field for
+!Proteins via Comparison with Accurate Quantum Chemical Calculations on
+!Peptides. G. Kaminski, R. A. Friesner, J. Tirado-Rives and W. L.
+!Jorgensen, J. Phys. Chem. B, 105, 6474-6487 (2001).
+!
+!Perfluoroalkanes: Conformational Analysis and Liquid-State Properties
+!from Ab Initio and Monte Carlo Calculations. E. K. Watkins and
+!W. L. Jorgensen, J. Phys. Chem. A, 105, 4118-4125 (2001).
+!
+!Accuracy of Free Energies of Hydration from CM1 and CM3 Atomic
+!Charges.Blagovif, M. U.; Jorgensen, W. L., J. Comput. Chem. 2004, 25,
+!0000-0000.  Submitted.
+!
+!A five-site model for liquid water and the reproduction of the density
+!anomaly by rigid, non-polarizable models. M. W. Mahoney and
+!W. L. Jorgensen, J. Chem. Phys., 112, 8910-8922 (2000).
+!
+!Diffusion constant of the TIP5P model of liquid water. M. W. Mahoney
+!and W. L. Jorgensen, J. Chem. Phys., 114, 363-366 (2001).
+!
+!Rapid Estimation of Electronic Degrees of Freedom in Monte Carlo
+!Calculations for Polarizable Models of Liquid Water. M. W. Mahoney and
+!W. L. Jorgensen, J. Chem. Phys., 114, 9337-9349 (2001).
+!
+!Quantum, intramolecular flexibility, and polarizability effects on the
+!reproduction of the density anomaly of liquid water by simple
+!potential functions. M. W. Mahoney and W. L. Jorgensen,
+!J. Chem. Phys., 115, 10758-10768 (2001).
+!
+!Improved Peptide and Protein Torsional Energetics with the OPLS-AA
+!Force Field M. J. Robertson, J. Tirado-Rives and W. L. Jorgensen,
+!J. Chem. Theory. Comput. (2015)
+
+MASS  -1  C135      12.01100 C ! CH3 all-atom C: alkanes ALL-ATOM
+MASS  -1  C136      12.01100 C ! CH2 all-atom C: alkanes PARAMETERS
+MASS  -1  C137      12.01100 C ! CH all-atom C: alkanes FROM HERE ON
+MASS  -1  C145      12.01100 C ! Benzene C - 12 site JACS,112,4768-90
+MASS  -1  C149      12.01100 C ! all-atom C: CH2, ethyl benzene
+MASS  -1  C157      12.01100 C ! all-atom C: CH3 & CH2, alcohols
+MASS  -1  C158      12.01100 C ! all-atom C: CH, alcohols
+MASS  -1  C166      12.01100 C ! C(OH) phenol Use with all
+MASS  -1  C206      12.01100 C ! all-atom C: CH2, thiols
+MASS  -1  C209      12.01100 C ! all-atom C: CH3, sulfides
+MASS  -1  C210      12.01100 C ! all-atom C: CH2, sulfides
+MASS  -1  C214      12.01100 C ! all-atom C: CH2, disulfides
+MASS  -1  C223      12.01100 C ! C in RCH2NH2 and Gly CA (See 900 for amines)
+MASS  -1  C224      12.01100 C ! C in R2CHNH2 and Ala CA
+MASS  -1  C235      12.01100 C ! C: C=O in amide. Acyl R in amides
+MASS  -1  C242      12.01100 C ! C on N: secondary N-Me amide
+MASS  -1  C245      12.01100 C ! C on N: tertiary N-CH2R amide (Pro Cdelta)
+MASS  -1  C246      12.01100 C ! C on N: tertiary N-CHR2 amide (Pro Calpha)
+MASS  -1  C267      12.01100 C ! Co in CCOOH carboxylic acid
+MASS  -1  C271      12.01100 C ! C in COO- carboxylate
+MASS  -1  C274      12.01100 C ! C: CH2, carboxylate ion
+MASS  -1  C283      12.01100 C ! AA C-alpha on C-terminal ALA
+MASS  -1  C284      12.01100 C ! AA C-alpha on C-terminal GLY
+MASS  -1  C285      12.01100 C ! AA C-alpha on C-terminal PRO
+MASS  -1  C292      12.01100 C ! C in RCH2NH3+ & CA in N-term Gly
+MASS  -1  C293      12.01100 C ! C in R2CHNH3+ & CA in N-term Ala, etc.
+MASS  -1  C295      12.01100 C ! AA:C-alpha in N-term PRO
+MASS  -1  C296      12.01100 C ! AA:C-delta in N-term PRO
+MASS  -1  C302      12.01100 C ! C: guanidinium C+
+MASS  -1  C307      12.01100 C ! C: CH2(D), ARG, ethylguanidinium
+MASS  -1  C308      12.01100 C ! C: CH2(G), ARG
+MASS  -1  C500      12.01100 C ! CG in TRP
+MASS  -1  C501      12.01100 C ! CD C in TRP
+MASS  -1  C502      12.01100 C ! CE C in TRP
+MASS  -1  C505      12.01100 C ! CB in HIS
+MASS  -1  C506      12.01100 C ! CE1 in HID, HIE
+MASS  -1  C507      12.01100 C ! CD2 in HID, CG in HIE
+MASS  -1  C508      12.01100 C ! CG in HID, CD2 in HIE
+MASS  -1  C509      12.01100 C ! CE1 in HIP
+MASS  -1  C510      12.01100 C ! CG, CD2 in HIP
+MASS  -1  C514      12.01100 C ! CD1 in TRP
+!MASS  -1  C748      12.01100  C ! CD of neutral ARG, adm jr.
+!MASS  -1  C752      12.01100  C ! CZ " " ", adm jr.
+!MASS  -1  C906      12.01100  C ! CH2(N) primary aliphatic amines, H(C) type 911
+!
+MASS  -1  H140       1.00800 H ! H all-atom H: alkanes
+MASS  -1  H146       1.00800 H ! Benzene H - 12 site "
+MASS  -1  H155       1.00800 H ! all-atom H(O): mono alcohols
+MASS  -1  H168       1.00800 H ! H phenol 145 & 146
+MASS  -1  H204       1.00800 H ! all-atom H(S): thiols (mod 11/99)
+MASS  -1  H240       1.00800 H ! H on N: primary amide
+MASS  -1  H241       1.00800 H ! H on N: secondary amide
+MASS  -1  H270       1.00800 H ! H in CCOOH
+MASS  -1  H290       1.00800 H ! H (RNH3+) "
+MASS  -1  H301       1.00800 H ! H: guanidinium NH2
+MASS  -1  H304       1.00800 H ! H: guanidinium NHR
+MASS  -1  H310       1.00800 H ! H (R2NH2+)
+MASS  -1  H504       1.00800 H ! H on NE in TRP
+MASS  -1  H513       1.00800 H ! H on N in HIP
+!MASS  -1  H909       1.00800  H ! H(N) primary amines, adm jr.
+!MASS  -1  H910       1.00800  H ! H(N) secondary amines, adm jr.
+!MASS  -1  H911       1.00800  H ! H(C) for Carbons directly bonded to N in amines, diamines, adm jr.
+MASS  -1  N237      14.00700 N ! N: primary amide. alkane parameters.
+MASS  -1  N238      14.00700 N ! N: secondary amide 279 for formyl H.
+MASS  -1  N239      14.00700 N ! N: tertiary amide
+MASS  -1  N287      14.00700 N ! N (RNH3+) "
+MASS  -1  N300      14.00700 N ! N: guanidinium NH2
+MASS  -1  N303      14.00700 N ! N: guanidinium NHR
+MASS  -1  N309      14.00700 N ! N (R2NH2+)
+MASS  -1  N503      14.00700 N ! NE in TRP
+MASS  -1  N511      14.00700 N ! NE in HID, ND in HIE
+MASS  -1  N512      14.00700 N ! N in HIP
+!MASS  -1  N749      14.00700 N ! NE ", adm jr.
+!MASS  -1  N750      14.00700 N ! N1 " " " (HN=CZ), adm jr.
+!MASS  -1  N751      14.00700 N ! N2 " " " (H2N-CZ), adm jr.
+!MASS  -1  N900      14.00700 N ! N primary amines, adm jr.
+!
+MASS  -1  O154      15.99940 O ! all-atom O: mono alcohols
+MASS  -1  O167      15.99940 O ! O phenol atom C, H
+MASS  -1  O236      15.99940 O ! O: C=O in amide. is neutral - use
+MASS  -1  O268      15.99940 O ! Oh in CCOOH R in RCOOH is
+MASS  -1  O269      15.99940 O ! Oc in CCOOH neutral; use 135-140
+MASS  -1  O272      15.99940 O ! O: O in COO- carboxylate
+
+MASS    94 N1037  14.00700  N  !N-dimethyl Cter patch
+MASS    95 C1038  12.01100  C  ! N-dimethyl Cter patch
+MASS    96 H1042  1.00800  H   !N-dimethyl Cter patch
+MASS    97 C711  12.01100  C  ! Cyclopropyl residue
+MASS    98 C713  12.01100  C  ! Cyclopropyl residue
+MASS    99 N902  14.00700  N  !N-dimethyl Residue
+MASS   100 C905  12.01100  C  !N-dimethyl Residue
+MASS   101 H911   1.00800  H   !N-dimethyl Residue
+MASS   102 C908  12.01100  C  !N-dimethyl Residue
+MASS   103 H469   1.00800  H  ! CTM
+MASS   104 C468  12.01100  C  !CTM
+MASS   105 C465  12.01100  C  !CTM
+MASS   106 O466  15.99940  O  !CTM
+MASS   107 O467  15.99940  0  !CTM
+
+MASS 765  O446  15.999400 O ! phosphoserine
+MASS 765  O447  15.999400 O ! phosphoserine
+MASS  -1  P5445  30.974000 P ! 
+MASS  -1  O5447 15.999400 O !
+MASS  -1  O5446 15.999400 O !
+MASS  -1  P5449  30.974000 P !
+MASS  -1  H5448   1.00800  H !
+MASS  -1  O5450 15.999400 O !
+
+MASS  -1  S200      32.06000 S ! all-atom S: thiols (mod 11/99)
+MASS  -1  S202      32.06000 S ! all-atom S: sulfides
+MASS  -1  S203      32.06000 S ! all-atom S: disulfides
+MASS  -1  S206      32.06000 S ! all-atom S: disulfides
+MASS  -1  S298      32.06000 S ! CYSF
+MASS  -1  S299      32.06000 S ! CYSP
+
+MASS 7136  HC    1.008000 H ! polar H (equivalent to protein H)
+MASS 7137  HCL   1.008000 H ! charged H for PE (equivalent to protein HC)
+MASS 7138  HLC   1.008000 H ! Nucleic acid phosphate hydroxyl proton
+MASS 7142  HM    1.008000 H ! for alkene; RHC=CR
+MASS 7145  CL   12.011000 C ! carbonyl C (acetic acid/methyl acetate)
+MASS 7146  CN3  12.011000 C ! sp3 carbon with 1 H  (-CH1-)
+MASS 7147  CT   12.011000 C ! carbon of methylene group (-CH2-)
+MASS 7148  CL2  12.011000 C ! carbon of methyl group (-CH3)
+MASS 7149  CL3  12.011000 C ! carbon of methyl group (-CH3) for tetramethylammonium
+MASS 7150  CMc  12.011000 C ! for alkene; RHC=CR
+MASS 7152  CLL  12.011000 C ! for POPS
+MASS 7156  OLL  15.999400 O ! acetate oxygen
+MASS 7157  OSa  15.999400 O ! ester oxygen
+MASS 7158  O2P  15.999400 O ! Nucleic acid =O in phosphate or sulfate
+MASS 7159  OHL  15.999400 O ! Nucleic acid phosphate hydroxyl oxygen
+MASS 7160  OSp  15.999400 O ! Phosphate oxygen, to avoid conflict with methylacetate type O
+MASS 7161  P    30.974000 P ! phosphorus
+
+
+MASS  -1  OT        15.99940 O ! TIP3P water
+MASS  -1  HT         1.00800 H ! TIP3P water
+MASS  -1  SOD       22.98977 NA ! Sodium Ion, adm jr.
+MASS  -1  CLA       35.45000 CL ! Chloride Ion, adm jr.
+MASS  -1  MG        24.30000 MG ! Magnesium Ion
+
+DECL -CA
+DECL -C
+DECL -O
+DECL +N
+DECL +HN
+DECL +CA
+DECL +P  
+DECL +O1P 
+DECL +O2P 
+DECL +O5' 
+DECL -O3' 
+
+DEFA FIRS NTER LAST CTER
+AUTOGENERATE ANGLES DIHEDRALS PATCH
+
+RESI NALA          0.00
+GROUP   
+ATOM N    N1037  -0.360 !     |
+ATOM CN   C1038   0.000 ! CH3-N
+ATOM CA   C224    0.140 !     |     HB1
+ATOM HA   H140    0.060 !     |    /
+GROUP                   !  HA-CA--CB-HB2
+ATOM CB   C135   -0.180 !     |    \
+ATOM HB1  H140    0.060 !     |     HB3
+ATOM HB2  H140    0.060 !   O=C
+ATOM HB3  H140    0.060 !     |
+GROUP                   !
+ATOM C    C235    0.500 !
+ATOM O    O236   -0.500 !
+GROUP                   !
+ATOM HC1  H1042   0.060 !
+ATOM HC2  H1042   0.060 !
+ATOM HC3  H1042   0.060 !
+BOND CB CA  N  CN  N  CA  CN HC1  CN HC2  CN HC3  
+BOND C  CA  C  +N  CA HA  CB HB1  CB HB2  CB HB3 
+DOUBLE O  C 
+IMPR HN N -C CA   O C CA +N     
+ACCEPTOR O C   
+IC -C   CA   *N   HN    1.3551 126.4900  180.0000 115.4200  0.9996
+IC -C   N    CA   C     1.3551 126.4900  180.0000 114.4400  1.5390
+IC N    CA   C    +N    1.4592 114.4400  180.0000 116.8400  1.3558
+IC +N   CA   *C   O     1.3558 116.8400  180.0000 122.5200  1.2297
+IC CA   C    +N   +CA   1.5390 116.8400  180.0000 126.7700  1.4613
+IC N    C    *CA  CB    1.4592 114.4400  123.2300 111.0900  1.5461
+IC N    C    *CA  HA    1.4592 114.4400 -120.4500 106.3900  1.0840
+IC C    CA   CB   HB1   1.5390 111.0900  177.2500 109.6000  1.1109
+IC HB1  CA   *CB  HB2   1.1109 109.6000  119.1300 111.0500  1.1119
+IC HB1  CA   *CB  HB3   1.1109 109.6000 -119.5800 111.6100  1.1114
+
+RESI CPR          0.00
+GROUP   
+ATOM N    N238   -0.500 !     |   HB1
+ATOM HN   H241    0.300 !  HN-N   |
+ATOM CA   C713    0.200 !     |  CB1-HB2
+                        !     | / |
+GROUP                   !     CA  |
+ATOM CB2  C711   -0.120 !     | \ |
+ATOM CB1  C711   -0.120 !     |  CB2-HB3  
+ATOM HB1  H140    0.060 !   O=C   |
+ATOM HB2  H140    0.060 !     |   HB4
+ATOM HB3  H140    0.060 !
+ATOM HB4  H140    0.060 !
+GROUP                   !
+ATOM C    C235    0.500 !
+ATOM O    O236   -0.500 !
+BOND CB1 CA  N  HN  N  CA  
+BOND C  CA   C  +N  CB1 HB1  CB1 HB2  
+BOND CB2 CA  CB1 CB2  CB2 HB3  CB2 HB4
+DOUBLE O  C 
+IMPR HN N -C CA   O C CA +N  
+DONOR HN N   
+ACCEPTOR O C   
+IC -C   CA   *N   HN    1.3551 126.4900  180.0000 115.4200  0.9996
+IC -C   N    CA   C     1.3551 126.4900  180.0000 114.4400  1.5390
+IC N    CA   C    +N    1.4592 114.4400  180.0000 116.8400  1.3558
+IC +N   CA   *C   O     1.3558 116.8400  180.0000 122.5200  1.2297
+IC CA   C    +N   +CA   1.5390 116.8400  180.0000 126.7700  1.4613
+IC N    C    *CA  CB1   1.4592 114.4400  123.2300 111.0900  1.5461
+IC N    C    *CA  CB2   1.4592 114.4400  243.2300 111.0900  1.5461
+IC C    CA   CB1  HB1   1.5390 111.0900  177.2500 109.6000  1.1109
+IC HB1  CA   *CB1 HB2   1.1109 109.6000  119.1300 111.0500  1.1119
+IC C    CA   CB2  HB3   1.5390 111.0900  177.2500 109.6000  1.1109
+IC HB3  CA   *CB2 HB4   1.1109 109.6000 -119.5800 111.6100  1.1114
+
+RESI CYSP         0.00 ! Cysteine-Palmitate
+GROUP                  ! 
+ATOM N    N238   -0.50 !     
+ATOM HN   H241    0.30 !  
+ATOM CA   C224    0.14 !     
+ATOM HA   H140    0.06 !      |     
+GROUP                  !   HN-N
+ATOM C    C235    0.50 !      |   HB1
+ATOM O    O236   -0.50 !      |   |
+GROUP                  !   HA-CA--CB--SG
+ATOM CB   C206    0.06 !      |   |    |
+ATOM HB1  H140    0.06 !      |   HB2  | 
+ATOM HB2  H140    0.06 !    O=C        |
+ATOM SG   S206   -0.335!      |        |
+ATOM C1   CLL     0.525!           O1=C1
+ATOM O1   OLL    -0.41 !               |
+ATOM C2   CL2    -0.08 !          H2A-C2-H2B
+ATOM H2A  HLC     0.06 !               |
+ATOM H2B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C3   CL2    -0.12 !          H3A-C3-H3B
+ATOM H3A  HLC     0.06 !               |
+ATOM H3B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C4   CL2    -0.12 !          H4A-C4-H4B
+ATOM H4A  HLC     0.06 !               |
+ATOM H4B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C5   CL2    -0.12 !          H5A-C5-H5B
+ATOM H5A  HLC     0.06 !               |
+ATOM H5B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C6   CL2    -0.12 !          H6A-C6-H6B
+ATOM H6A  HLC     0.06 !               |
+ATOM H6B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C7   CL2    -0.12 !          H7A-C7-H7B
+ATOM H7A  HLC     0.06 !               |
+ATOM H7B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C8   CL2    -0.12 !          H8A-C8-H8B
+ATOM H8A  HLC     0.06 !               |
+ATOM H8B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C9   CL2    -0.12 !          H9A-C9-H9B
+ATOM H9A  HLC     0.06 !               |
+ATOM H9B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C10  CL2    -0.12 !         H10A-C10-H10B
+ATOM H10A HLC     0.06 !               |
+ATOM H10B HLC     0.06 !               |
+GROUP                  !               |
+ATOM C11  CL2    -0.12 !         H11A-C11-H11B
+ATOM H11A HLC     0.06 !               |
+ATOM H11B HLC     0.06 !               |
+GROUP                  !               |
+ATOM C12  CL2    -0.12 !         H12A-C12-H12B
+ATOM H12A HLC     0.06 !               |
+ATOM H12B HLC     0.06 !               |
+GROUP                  !               |
+ATOM C13  CL2    -0.12 !         H13A-C13-H13B
+ATOM H13A HLC     0.06 !               |
+ATOM H13B HLC     0.06 !               |
+GROUP                  !               |
+ATOM C14  CL2    -0.12 !         H14A-C14-H14B
+ATOM H14A HLC     0.06 !               |
+ATOM H14B HLC     0.06 !               |
+GROUP                  !               |
+ATOM C15  CL2    -0.12 !         H15A-C15-H15B
+ATOM H15A HLC     0.06 !               |
+ATOM H15B HLC     0.06 !               |
+GROUP                  !               |
+ATOM C16  CL3    -0.18 !         H16A-C16-H16B
+ATOM H16A HLC     0.06 !               |
+ATOM H16B HLC     0.06 !             H16C
+ATOM H16C HLC     0.06 !
+BOND CB CA   SG CB   N HN  N  CA
+BOND C  CA   C +N  CA HA  CB HB1
+BOND CB HB2  SG C1
+BOND  C1  C2  C2  H2A  C2  H2B
+BOND  C2  C3  C3  H3A  C3  H3B
+BOND  C3  C4  C4  H4A  C4  H4B
+BOND  C4  C5  C5  H5A  C5  H5B
+BOND  C5  C6  C6  H6A  C6  H6B
+BOND  C6  C7  C7  H7A  C7  H7B
+BOND  C7  C8  C8  H8A  C8  H8B
+BOND  C8  C9  C9  H9A  C9  H9B
+BOND  C9  C10 C10 H10A C10 H10B
+BOND  C10 C11 C11 H11A C11 H11B
+BOND  C11 C12 C12 H12A C12 H12B
+BOND  C12 C13 C13 H13A C13 H13B
+BOND  C13 C14 C14 H14A C14 H14B
+BOND  C14 C15 C15 H15A C15 H15B
+BOND  C15 C16 C16 H16A C16 H16B C16 H16C
+IMPR C1 O1 SG C2
+IMPR HN N -C CA   O C CA +N
+DOUBLE O  C
+DOUBLE  C1  O1
+DONOR HN N
+ACCEPTOR O C
+ACCEPTOR O1 C1
+IC -C   CA   *N   HN    1.3479 123.93  180.00 114.77  0.9982
+IC -C   N    CA   C     1.3479 123.93  180.00 105.89  1.5202
+IC N    CA   C    +N    1.4533 105.89  180.00 118.30  1.3498
+IC +N   CA   *C   O     1.3498 118.30  180.00 120.59  1.2306
+IC CA   C    +N   +CA   1.5202 118.30  180.00 124.50  1.4548
+IC HN   N    CA   CB    0.9674 117.70  -36.00 110.95  1.5003
+IC CB   N    *CA  C     1.5003 110.95  128.76 106.38  1.5291
+IC CB   N    *CA  HA    1.5003 110.95 -121.31 107.62  1.1060
+IC N    CA   CB   SG    1.3945 110.95 -174.62 111.79  1.8692
+IC SG   CA   *CB  HB1   1.8692 111.79  114.87 107.79  1.1406
+IC SG   CA   *CB  HB2   1.8692 111.79 -128.20 109.45  1.0949
+IC N    CA   C    O     1.3945 106.38    5.30 121.98  1.2956
+IC CA   CB   SG   C1    1.5003 111.79 -178.37 107.64  1.8012
+IC CB   SG   C1   C2    1.8692 107.64  158.80 115.77  1.5434
+IC C2   SG   *C1  O1    1.5434 115.77 -174.68 119.62  1.2281
+IC SG   C1   C2   C3    1.8012 115.77  152.55 111.56  1.5614
+IC C3   C1   *C2  H2A   1.5614 111.56 -126.88 116.60  1.0567
+IC H2A  C1   *C2  H2B   1.0567 116.60 -120.46 107.56  1.0927
+IC C1   C2   C3   C4    1.5434 111.56  178.17 112.38  1.5543
+IC C4   C2   *C3  H3A   1.5543 112.38 -115.58 110.36  1.0691
+IC H3A  C2   *C3  H3B   1.0691 110.36 -116.74 109.97  1.1344
+IC C2   C3   C4   C5    1.5614 112.38  174.26 114.93  1.5290
+IC C5   C3   *C4  H4A   1.5290 114.93 -117.82 107.19  1.0636
+IC H4A  C3   *C4  H4B   1.0636 107.19 -118.11 109.41  1.1180
+IC C3   C4   C5   C6    1.5543 114.93  139.45 116.26  1.5437
+IC C6   C4   *C5  H5A   1.5437 116.26 -115.47 116.05  1.1088
+IC H5A  C4   *C5  H5B   1.1088 116.05 -122.13 108.08  1.1320
+IC C4   C5   C6   C7    1.5290 116.26  159.28 113.90  1.5449
+IC C7   C5   *C6  H6A   1.5449 113.90 -120.21 112.43  1.0817
+IC H6A  C5   *C6  H6B   1.0817 112.43 -112.42 110.24  1.0503
+IC C5   C6   C7   C8    1.5437 113.90  167.68 115.30  1.5615
+IC C8   C6   *C7  H7A   1.5615 115.30 -116.36 108.50  1.1480
+IC H7A  C6   *C7  H7B   1.1480 108.50 -115.94 110.56  1.1231
+IC C6   C7   C8   C9    1.5449 115.30  165.37 111.83  1.5514
+IC C9   C7   *C8  H8A   1.5514 111.83 -113.43 111.91  1.1377
+IC H8A  C7   *C8  H8B   1.1377 111.91 -118.34 108.18  1.0480
+IC C7   C8   C9   C10   1.5615 111.83  176.59 110.57  1.5526
+IC C10  C8   *C9  H9A   1.5526 110.57 -129.97 113.53  1.1310
+IC H9A  C8   *C9  H9B   1.1310 113.53 -109.70 107.39  1.1594
+IC C8   C9   C10  C11   1.5514 110.57 -177.26 112.26  1.5783
+IC C11  C9   *C10 H10A  1.5783 112.26 -123.45 106.63  1.1533
+IC H10A C9   *C10 H10B  1.1533 106.63 -118.25 115.85  1.0771
+IC C9   C10  C11  C12   1.5526 112.26 -163.15 112.58  1.5528
+IC C12  C10  *C11 H11A  1.5528 112.58 -121.90 102.65  1.0764
+IC H11A C10  *C11 H11B  1.0764 102.65 -122.46 109.95  1.1248
+IC C10  C11  C12  C13   1.5783 112.58 -179.16 115.34  1.5375
+IC C13  C11  *C12 H12A  1.5375 115.34 -129.55 111.80  1.0856
+IC H12A C11  *C12 H12B  1.0856 111.80 -109.80 105.66  1.0741
+IC C11  C12  C13  C14   1.5528 115.34 -178.59 114.71  1.5546
+IC C14  C12  *C13 H13A  1.5546 114.71 -121.77 106.42  1.0758
+IC H13A C12  *C13 H13B  1.0758 106.42 -114.53 102.53  1.0909
+IC C12  C13  C14  C15   1.5375 114.71  179.82 117.78  1.5331
+IC C15  C13  *C14 H14A  1.5331 117.78 -126.75 106.30  1.1072
+IC H14A C13  *C14 H14B  1.1072 106.30 -108.90 106.38  1.0834
+IC C13  C14  C15  C16   1.5546 117.78  169.53 109.01  1.4928
+IC C16  C14  *C15 H15A  1.4928 109.01 -121.10 100.35  1.1439
+IC H15A C14  *C15 H15B  1.1439 100.35 -117.57 115.28  1.1080
+IC C14  C15  C16  H16A  1.5331 109.01  -61.78 119.36  1.0834
+IC H16A C15  *C16 H16B  1.0834 119.36  138.24 116.61  1.0932
+IC H16A C15  *C16 H16C  1.0834 119.36 -107.69 109.08  1.1555
+
+RESI CYSF         0.00  ! Cysteine-Farnesyl
+GROUP                   !
+ATOM N     N238  -0.50  !     |
+ATOM HN    H241   0.30  !  HN-N
+ATOM CA    C224   0.14  !     |   HB1
+ATOM HA    H140   0.06  !     |   |
+GROUP                   !  HA-CA--CB--SG
+ATOM C     C235   0.50  !     |   |    |
+ATOM O     O236  -0.50  !     |   HB2  |
+GROUP                   !   O=C        |
+ATOM CB    C210   0.0475!     |        |
+ATOM HB1   H140   0.06  !              |
+ATOM HB2   H140   0.06  !              |
+ATOM SG    S298  -0.335 !              | S202
+ATOM C1    CL2    0.0475!        H1A--C1--H1B
+ATOM H1A   HLC    0.06  !              |
+ATOM H1B   HLC    0.06  !              |
+GROUP                   !              |
+ATOM C2    CMc   -0.115 !              C2--H2A         (cis)
+ATOM H2A   HM     0.115 !              ||
+GROUP                   !              ||   H4A
+ATOM C3    CMc    0.00  !              ||   |
+GROUP                   !              C3--C4--H4B
+ATOM C4    CL2   -0.18  !              |    |
+ATOM H4A   HLC    0.06  !              |    H4C
+ATOM H4B   HLC    0.06  !              !
+ATOM H4C   HLC    0.06  !              !
+GROUP                   !              !
+ATOM C5    CL2   -0.12  !        H5A--C5--H5B
+ATOM H5A   HLC    0.06  !              !
+ATOM H5B   HLC    0.06  !              !
+GROUP                   !              |
+ATOM C6    CL2   -0.12  !        H6A--C6--H6B
+ATOM H6A   HLC    0.06  !              |
+ATOM H6B   HLC    0.06  !              |
+GROUP                   !              |
+ATOM C7    CMc   -0.115 !              C7--H7A         (cis)
+ATOM H7A   HM     0.115 !              ||
+GROUP                   !              ||   H9A
+ATOM C8    CMc    0.00  !              ||   |
+GROUP                   !              C8--C9--H9B
+ATOM C9    CL3   -0.18  !              |    |
+ATOM H9A   HLC    0.06  !              |    H9C
+ATOM H9B   HLC    0.06  !              !
+ATOM H9C   HLC    0.06  !              !
+GROUP                   !              !
+ATOM C10   CL2   -0.12  !        H10A--C10--H10B
+ATOM H10A  HLC    0.06  !              !
+ATOM H10B  HLC    0.06  !              !
+GROUP                   !              |
+ATOM C11   CL2   -0.12  !        H11A--C11--H11B
+ATOM H11A  HLC    0.06  !              |
+ATOM H11B  HLC    0.06  !              |
+GROUP                   !              |
+ATOM C12   CMc   -0.115 !              C12--H12A         (cis)
+ATOM H12A  HM     0.115 !              ||
+GROUP                   !              ||   H14A
+ATOM C13   CMc    0.00  !              ||   |
+GROUP                   !              C13--C14--H14B
+ATOM C14   CL3   -0.18  !              |    |
+ATOM H14A  HLC    0.06  !              |    H14C
+ATOM H14B  HLC    0.06  !              !
+ATOM H14C  HLC    0.06  !              !
+GROUP                   !              !
+ATOM C15   CL3   -0.18  !        H15A--C15--H15B
+ATOM H15A  HLC    0.06  !              |
+ATOM H15B  HLC    0.06  !              |
+ATOM H15C  HLC    0.06  !              H15C
+
+BOND CB CA   SG CB   N HN  N  CA
+BOND C  CA   C +N  CA HA  CB HB1
+BOND CB HB2  SG C1
+DOUBLE O  C
+
+BOND C1 C2   C3 C4   C3 C5           ! cis isoprene backbone carbons
+DOUBLE C2 C3                         ! cis double bond
+BOND C1 H1A  C1 H1B                  ! C1 hydrogens
+BOND C2 H2A                          ! C2 hydrogen
+BOND C4 H4A  C4 H4B  C4 H4C          ! C4 hydrogens
+BOND C5 H5A  C5 H5B                  ! C5 hydrogens
+BOND C5 C6                           ! isoprene linking bond
+BOND C6 C7   C8 C9   C8 C10          ! cis isoprene backbone carbons
+DOUBLE C7 C8                         ! cis double bond
+BOND C6 H6A  C6 H6B                  ! C6 hydrogens
+BOND C7 H7A                          ! C7 hydrogen
+BOND C9 H9A  C9 H9B  C9 H9C          ! C9 hydrogens
+BOND C10 H10A  C10 H10B              ! C10 hydrogens
+BOND C10 C11                         ! isoprene linking bond
+BOND C11 C12   C13 C14   C13 C15     ! cis isoprene backbone carbons
+DOUBLE C12 C13                       ! cis double bond
+BOND C11 H11A  C11 H11B              ! C11 hydrogens
+BOND C12 H12A                        ! C12 hydrogen
+BOND C14 H14A  C14 H14B  C14 H14C    ! C14 hydrogens
+BOND C15 H15A  C15 H15B  C15 H15C    ! C15 hydrogens
+
+IC -C     CA    *N     HN         1.3479  123.93  180.00  114.77   0.9982
+IC -C     N     CA     C          1.3479  123.93  180.00  105.89   1.5202
+IC N      CA    C      +N         1.4533  105.89  180.00  118.30   1.3498
+IC +N     CA    *C     O          1.3498  118.30  180.00  120.59   1.2306
+IC CA     C     +N     +CA        1.5202  118.30  180.00  124.50   1.4548
+IC HN     N     CA     CB         0.9674  117.70  -36.00  110.95   1.5003
+IC CB     N     *CA    C          1.5003  110.95  128.76  106.38   1.5291
+IC CB     N     *CA    HA         1.5003  110.95 -121.31  107.62   1.1060
+IC N      CA    CB     SG         1.3945  110.95 -174.62  111.79   1.8692
+IC SG     CA    *CB    HB1        1.8692  111.79  114.87  107.79   1.1406
+IC SG     CA    *CB    HB2        1.8692  111.79 -128.20  109.45   1.0949
+IC N      CA    C      O          1.3945  106.38    5.30  121.98   1.2956
+IC CA     CB    SG     C1         1.5003  111.79 -178.37  107.64   1.8012
+IC CB     SG    C1     C2         1.8692  107.64  158.80  115.77   1.5434
+IC SG     C1    C2     C3         1.8012  115.77  152.55  111.56   1.5614
+IC C2     SG    *C1    H1A        1.5300  110.10  120.00  109.50   1.1110
+IC C2     SG    *C1    H1B        1.5300  110.10 -120.00  109.50   1.1110
+IC C3     C1    *C2    H2A        1.3400  123.50  180.00  116.00   1.1000
+IC C1     C2    C3     C4         1.5020  123.50  180.00  123.50   1.5020
+IC C5     C2    *C3     C4        1.5020  123.50  180.00  123.50   1.5040
+IC C2     C3    C4     H4A        1.3400  123.50  180.00  111.50   1.1110
+IC H4A    C3    *C4    H4B        1.1110  111.50  120.00  111.50   1.1110
+IC H4A    C3    *C4    H4C        1.1110  111.50 -120.00  111.50   1.1110
+IC C2     C3    C5     C6         1.3400  123.50  180.00  112.20   1.5300
+IC C6     C3    *C5    H5A        1.5300  112.20  120.00  111.50   1.1110
+IC C6     C3    *C5    H5B        1.1110  111.50 -120.00  111.50   1.1110
+IC C3     C5    C6     C7         1.5020  112.20  180.00  112.20   1.5020
+IC C7     C5    *C6    H6A        1.5020  112.20  120.00  110.10   1.1110
+IC C7     C5    *C6    H6B        1.5020  112.20 -120.00  110.10   1.1110
+IC C5     C6    C7     C8         1.5300  112.20  180.00  123.50   1.3400
+IC C8     C6    *C7    H7A        1.3400  123.50  180.00  116.00   1.1000
+IC C6     C7    C8     C9         1.5020  123.50  180.00  123.50   1.5020
+IC C10    C7    *C8    C9         1.5020  123.50  180.00  123.50   1.5040
+IC C7     C8    C9     H9A        1.3400  123.50  180.00  111.50   1.1110
+IC H9A    C8    *C9    H9B        1.1110  111.50  120.00  111.50   1.1110
+IC H9A    C8    *C9    H9C        1.1110  111.50 -120.00  111.50   1.1110
+IC C7     C8    C10    C11        1.3400  123.50  180.00  112.20   1.5300
+IC C11    C8    *C10   H10A       1.5300  112.20  120.00  111.50   1.1110
+IC C11    C8    *C10   H10B       1.1110  111.50 -120.00  111.50   1.1110
+IC C8     C10   C11    C12        1.5020  112.20  180.00  112.20   1.5020
+IC C12    C10   *C11   H11A       1.5020  112.20  120.00  110.10   1.1110
+IC C12    C10   *C11   H11B       1.5020  112.20 -120.00  110.10   1.1110
+IC C10    C11   C12    C13        1.5300  112.20  180.00  123.50   1.3400
+IC C13    C11   *C12   H12A       1.3400  123.50  180.00  116.00   1.1000
+IC C11    C12   C13    C14        1.5020  123.50  180.00  123.50   1.5020
+IC C15    C12   *C13   C14        1.5020  123.50  180.00  123.50   1.5040
+IC C12    C13   C14    H14A       1.3400  123.50  180.00  111.50   1.1110
+IC H14A   C13   *C14   H14B       1.1110  111.50  120.00  111.50   1.1110
+IC H14A   C13   *C14   H14C       1.1110  111.50 -120.00  111.50   1.1110
+IC C12    C13   C15    H15C       1.3400  123.50  180.00  108.20   1.1110
+IC H15C   C13   *C15   H15A       1.1110  108.20  120.00  111.50   1.1110
+IC H15C   C13   *C15   H15B       1.1110  108.20 -120.00  111.50   1.1110
+
+RESI CYSG         0.00  ! Cysteine-Geranyl
+GROUP                   !
+ATOM N     N238  -0.50  !     |
+ATOM HN    H241   0.30  !  HN-N
+ATOM CA    C224   0.14  !     |   HB1
+ATOM HA    H140   0.06  !     |   |
+GROUP                   !  HA-CA--CB--SG
+ATOM C     C235   0.50  !     |   |    |
+ATOM O     O236  -0.50  !     |   HB2  |
+GROUP                   !   O=C        |
+ATOM CB    C210   0.0475!     |        |
+ATOM HB1   H140   0.06  !              |
+ATOM HB2   H140   0.06  !              |
+ATOM SG    S298  -0.335 !              |
+ATOM C1    CL2    0.0475!        H1A--C1--H1B
+ATOM H1A   HLC    0.06  !              |
+ATOM H1B   HLC    0.06  !              |
+GROUP                   !              |
+ATOM C2    CMc   -0.115 !              C2--H2A         (cis)
+ATOM H2A   HM     0.115 !              ||
+GROUP                   !              ||   H4A
+ATOM C3    CMc    0.00  !              ||   |
+GROUP                   !              C3--C4--H4B
+ATOM C4    CL3   -0.18  !              |    |
+ATOM H4A   HLC    0.06  !              |    H4C
+ATOM H4B   HLC    0.06  !              !
+ATOM H4C   HLC    0.06  !              !
+GROUP                   !              !
+ATOM C5    CL2   -0.12  !        H5A--C5--H5B
+ATOM H5A   HLC    0.06  !              !
+ATOM H5B   HLC    0.06  !              !
+GROUP                   !              |
+ATOM C6    CL2   -0.12  !        H6A--C6--H6B
+ATOM H6A   HLC    0.06  !              |
+ATOM H6B   HLC    0.06  !              |
+GROUP                   !              |
+ATOM C7    CMc   -0.115 !              C7--H7A         (cis)
+ATOM H7A   HM     0.115 !              ||
+GROUP                   !              ||   H9A
+ATOM C8    CMc    0.00  !              ||   |
+GROUP                   !              C8--C9--H9B
+ATOM C9    CL3   -0.18  !              |    |
+ATOM H9A   HLC    0.06  !              |    H9C
+ATOM H9B   HLC    0.06  !              !
+ATOM H9C   HLC    0.06  !              !
+GROUP                   !              !
+ATOM C10   CL2   -0.12  !        H10A--C10--H10B
+ATOM H10A  HLC    0.06  !              !
+ATOM H10B  HLC    0.06  !              !
+GROUP                   !              |
+ATOM C11   CL2   -0.12  !        H11A--C11--H11B
+ATOM H11A  HLC    0.06  !              |
+ATOM H11B  HLC    0.06  !              |
+GROUP                   !              |
+ATOM C12   CMc   -0.115 !              C12--H12A         (cis)
+ATOM H12A  HM     0.115 !              ||
+GROUP                   !              ||   H14A
+ATOM C13   CMc    0.00  !              ||   |
+GROUP                   !              C13--C14--H14B
+ATOM C14   CL3   -0.18  !              |    |
+ATOM H14A  HLC    0.06  !              |    H14C
+ATOM H14B  HLC    0.06  !              !
+ATOM H14C  HLC    0.06  !              !
+GROUP                   !              !
+ATOM C15   CL2   -0.12  !        H15A--C15--H15B
+ATOM H15A  HLC    0.06  !              |
+ATOM H15B  HLC    0.06  !              |
+GROUP                   !              |
+ATOM C16   CL2   -0.12  !        H16A--C16--H16B
+ATOM H16A  HLC    0.06  !              |
+ATOM H16B  HLC    0.06  !              |
+GROUP                   !              |
+ATOM C17   CMc   -0.115 !              C17--H17A         (cis)
+ATOM H17A  HM     0.115 !              ||
+GROUP                   !              ||   H19A
+ATOM C18   CMc    0.00  !              ||   |
+GROUP                   !              C18--C19--H19B
+ATOM C19   CL3   -0.18  !              |    |
+ATOM H19A  HLC    0.06  !              |    H19C
+ATOM H19B  HLC    0.06  !              !
+ATOM H19C  HLC    0.06  !              !
+GROUP                   !              !
+ATOM C20   CL3   -0.18  !        H20A--C20--H20B
+ATOM H20A  HLC    0.06  !              !
+ATOM H20B  HLC    0.06  !              !
+ATOM H20C  HLC    0.06  !              H20C
+
+BOND CB CA   SG CB   N HN  N  CA
+BOND C  CA   C +N  CA HA  CB HB1
+BOND CB HB2  SG C1
+DOUBLE O  C
+
+BOND C1 C2   C3 C4   C3 C5              ! cis isoprene backbone carbons
+DOUBLE C2 C3                            ! cis double bond
+BOND C1 H1A  C1 H1B                     ! C1 hydrogens
+BOND C2 H2A                             ! C2 hydrogen
+BOND C4 H4A  C4 H4B  C4 H4C             ! C4 hydrogens
+BOND C5 H5A  C5 H5B                     ! C5 hydrogens
+BOND C5 C6                              ! isoprene linking bond
+BOND C6 C7   C8 C9   C8 C10             ! cis isoprene backbone carbons
+DOUBLE C7 C8                            ! cis double bond
+BOND C6 H6A  C6 H6B                     ! C6 hydrogens
+BOND C7 H7A                             ! C7 hydrogen
+BOND C9 H9A  C9 H9B  C9 H9C             ! C9 hydrogens
+BOND C10 H10A  C10 H10B                 ! C10 hydrogens
+BOND C10 C11                            ! isoprene linking bond
+BOND C11 C12   C13 C14   C13 C15        ! cis isoprene backbone carbons
+DOUBLE C12 C13                          ! cis double bond
+BOND C11 H11A  C11 H11B                 ! C11 hydrogens
+BOND C12 H12A                           ! C312 hydrogen
+BOND C14 H14A  C14 H14B  C14 H14C       ! C14 hydrogens
+BOND C15 H15A  C15 H15B                 ! C15 hydrogens
+BOND C15 C16                            ! isoprene linking bond
+BOND C16 C17   C18 C19   C18 C20        ! cis isoprene backbone carbons
+DOUBLE C17 C18                          ! cis double bond
+BOND C16 H16A  C16 H16B                 ! C16 hydrogens
+BOND C17 H17A                           ! C17 hydrogen
+BOND C19 H19A  C19 H19B  C19 H19C       ! C19 hydrogens
+BOND C20 H20A  C20 H20B  C20 H20C       ! C20 hydrogens
+
+IC -C     CA    *N     HN         1.3479  123.93  180.00  114.77   0.9982
+IC -C     N     CA     C          1.3479  123.93  180.00  105.89   1.5202
+IC N      CA    C      +N         1.4533  105.89  180.00  118.30   1.3498
+IC +N     CA    *C     O          1.3498  118.30  180.00  120.59   1.2306
+IC CA     C     +N     +CA        1.5202  118.30  180.00  124.50   1.4548
+IC HN     N     CA     CB         0.9674  117.70  -36.00  110.95   1.5003
+IC CB     N     *CA    C          1.5003  110.95  128.76  106.38   1.5291
+IC CB     N     *CA    HA         1.5003  110.95 -121.31  107.62   1.1060
+IC N      CA    CB     SG         1.3945  110.95 -174.62  111.79   1.8692
+IC SG     CA    *CB    HB1        1.8692  111.79  114.87  107.79   1.1406
+IC SG     CA    *CB    HB2        1.8692  111.79 -128.20  109.45   1.0949
+IC N      CA    C      O          1.3945  106.38    5.30  121.98   1.2956
+IC CA     CB    SG     C1         1.5003  111.79 -178.37  107.64   1.8012
+IC CB     SG    C1     C2         1.8692  107.64  158.80  115.77   1.5434
+IC SG     C1    C2     C3         1.8012  115.77  152.55  111.56   1.5614
+IC C2     SG    *C1    H1A        1.5300  110.10  120.00  109.50   1.1110
+IC C2     SG    *C1    H1B        1.5300  110.10 -120.00  109.50   1.1110
+IC C3     C1    *C2    H2A        1.3400  123.50  180.00  116.00   1.1000
+IC C1     C2    C3     C4         1.5020  123.50  180.00  123.50   1.5020
+IC C5     C2    *C3     C4        1.5020  123.50  180.00  123.50   1.5040
+IC C2     C3    C4     H4A        1.3400  123.50  180.00  111.50   1.1110
+IC H4A    C3    *C4    H4B        1.1110  111.50  120.00  111.50   1.1110
+IC H4A    C3    *C4    H4C        1.1110  111.50 -120.00  111.50   1.1110
+IC C2     C3    C5     C6         1.3400  123.50  180.00  112.20   1.5300
+IC C6     C3    *C5    H5A        1.5300  112.20  120.00  111.50   1.1110
+IC C6     C3    *C5    H5B        1.1110  111.50 -120.00  111.50   1.1110
+IC C3     C5    C6     C7         1.5020  112.20  180.00  112.20   1.5020
+IC C7     C5    *C6    H6A        1.5020  112.20  120.00  110.10   1.1110
+IC C7     C5    *C6    H6B        1.5020  112.20 -120.00  110.10   1.1110
+IC C5     C6    C7     C8         1.5300  112.20  180.00  123.50   1.3400
+IC C8     C6    *C7    H7A        1.3400  123.50  180.00  116.00   1.1000
+IC C6     C7    C8     C9         1.5020  123.50  180.00  123.50   1.5020
+IC C10    C7    *C8    C9         1.5020  123.50  180.00  123.50   1.5040
+IC C7     C8    C9     H9A        1.3400  123.50  180.00  111.50   1.1110
+IC H9A    C8    *C9    H9B        1.1110  111.50  120.00  111.50   1.1110
+IC H9A    C8    *C9    H9C        1.1110  111.50 -120.00  111.50   1.1110
+IC C7     C8    C10    C11        1.3400  123.50  180.00  112.20   1.5300
+IC C11    C8    *C10   H10A       1.5300  112.20  120.00  111.50   1.1110
+IC C11    C8    *C10   H10B       1.1110  111.50 -120.00  111.50   1.1110
+IC C8     C10   C11    C12        1.5020  112.20  180.00  112.20   1.5020
+IC C12    C10   *C11   H11A       1.5020  112.20  120.00  110.10   1.1110
+IC C12    C10   *C11   H11B       1.5020  112.20 -120.00  110.10   1.1110
+IC C10    C11   C12    C13        1.5300  112.20  180.00  123.50   1.3400
+IC C13    C11   *C12   H12A       1.3400  123.50  180.00  116.00   1.1000
+IC C11    C12   C13    C14        1.5020  123.50  180.00  123.50   1.5020
+IC C15    C12   *C13   C14        1.5020  123.50  180.00  123.50   1.5040
+IC C12    C13   C14    H14A       1.3400  123.50  180.00  111.50   1.1110
+IC H14A   C13   *C14   H14B       1.1110  111.50  120.00  111.50   1.1110
+IC H14A   C13   *C14   H14C       1.1110  111.50 -120.00  111.50   1.1110
+IC C12    C13   C15    C16        1.3400  123.50  180.00  112.20   1.5300
+IC C16    C13   *C15   H15A       1.5300  112.20  120.00  111.50   1.1110
+IC C16    C13   *C15   H15B       1.5300  112.20 -120.00  111.50   1.1110
+IC C13    C15   C16    C17        1.5020  112.20  180.00  112.20   1.5020
+IC C17    C15   *C16   H16A       1.5020  112.20  120.00  110.10   1.1110
+IC C17    C15   *C16   H16B       1.5020  112.20 -120.00  110.10   1.1110
+IC C15    C16   C17    C18        1.5300  112.20  180.00  123.50   1.3400
+IC C18    C16   *C17   H17A       1.3400  123.50  180.00  116.00   1.1000
+IC C16    C17   C18    C19        1.5020  123.50  180.00  123.50   1.5020
+IC C20    C17   *C18   C19        1.5020  123.50  180.00  123.50   1.5040
+IC C17    C18   C19    H19A       1.3400  123.50  180.00  111.50   1.1110
+IC H19A   C18   *C19   H19B       1.1110  111.50  120.00  111.50   1.1110
+IC H19A   C18   *C19   H19C       1.1110  111.50 -120.00  111.50   1.1110
+IC C17    C18   C20    H20A       1.5300  112.20  180.00  111.50   1.1110
+IC C17    C18   *C20   H20B       1.1110  111.50  120.00  111.50   1.1110
+IC C17    C18   *C20   H20C       1.1110  111.50 -120.00  111.50   1.1110
+
+
+RESI DMA          0.00
+GROUP   
+ATOM N    N238   -0.500 !     |     HD11 HD12
+ATOM HN   H241    0.300 !  HN-N       | / 
+ATOM CA   C224    0.140 !     |  HB1  CD1--HD13
+ATOM HA   H140    0.060 !     |   |   /
+GROUP                   !  HA-CA--CB-NG  
+ATOM NG   N902   -0.630 !     |   |   \     
+ATOM CB   C908    0.090 !     |  HB2  CD2--HD21
+ATOM HB1  H911    0.060 !   O=C      / \
+ATOM HB2  H911    0.060 !     |    HD21 HD22
+GROUP                   ! 
+ATOM CD1  C905    0.030 !
+ATOM HD11 H911    0.060 !
+ATOM HD12 H911    0.060 !
+ATOM HD13 H911    0.060 !
+GROUP   
+ATOM CD2  C905    0.030 !
+ATOM HD21 H911    0.060 !
+ATOM HD22 H911    0.060 !
+ATOM HD23 H911    0.060 !
+GROUP   
+ATOM C    C235    0.500 !
+ATOM O    O236   -0.500 !
+BOND CB  CA   NG  CB   CD1 NG   CD2 NG   
+BOND N   HN   N   CA    C   CA   C +N   
+BOND CA  HA   CB  HB1  CB  HB2  CD1 HD11   
+BOND CD1 HD12 CD1 HD13 CD2 HD21 CD2 HD22 CD2 HD23
+DOUBLE    O   C   
+IMPR HN N -C CA   O C CA +N  
+DONOR HN N   
+ACCEPTOR O C   
+IC -C   CA   *N   HN    1.3474 124.3100  180.0000 114.2600  0.9979
+IC -C   N    CA   C     1.3474 124.3100  180.0000 106.0500  1.5184
+IC N    CA   C    +N    1.4508 106.0500  180.0000 117.9300  1.3463
+IC +N   CA   *C   O     1.3463 117.9300  180.0000 120.5600  1.2299
+IC CA   C    +N   +CA   1.5184 117.9300  180.0000 124.2600  1.4467
+IC N    C    *CA  CB    1.4508 106.0500  121.5200 112.1200  1.5543
+IC N    C    *CA  HA    1.4508 106.0500 -116.5000 107.5700  1.0824
+IC N    CA   CB   NG    1.4508 111.1900  180.0000 117.4600  1.5472
+IC NG   CA   *CB  HB1   1.5472 117.4600  120.9800 107.1700  1.1145
+IC NG   CA   *CB  HB2   1.5472 117.4600 -124.6700 108.9800  1.1126
+IC CA   CB   NG   CD1   1.5543 117.4600  180.0000 110.4800  1.5361
+IC CD1  CB   *NG  CD2   1.5361 110.4800 -123.7500 112.5700  1.5360
+IC CB   NG   CD1  HD11  1.5472 110.4800  177.3300 110.5400  1.1111
+IC HD11 NG   *CD1 HD12  1.1111 110.5400  119.9600 110.6200  1.1112
+IC HD11 NG   *CD1 HD13  1.1111 110.5400 -119.8500 110.6900  1.1108
+IC CB   NG   CD2  HD21  1.5472 112.5700  178.9600 110.3200  1.1116
+IC HD21 NG   *CD2 HD22  1.1116 110.3200  119.7100 111.6900  1.1086
+IC HD21 NG   *CD2 HD23  1.1116 110.3200 -119.6100 110.4900  1.1115
+
+RESI GLYM          0.00 ! Glycine-myristate
+GROUP
+ATOM N    N238   -0.50 !                    
+ATOM HN   H241    0.30 !          HA1            
+ATOM CA   C223    0.08 !          |         
+ATOM HA1  H140    0.06 !     O=C--CA---N-HN  
+ATOM HA2  H140    0.06 !       |  |    |
+GROUP                  !          HA2  | 
+ATOM C    C235    0.50 !               |
+ATOM O    O236   -0.50 !               |
+GROUP                  !           O1=C1 
+ATOM C1   C235    0.50 !               |
+ATOM O1   O236   -0.50 !               |
+ATOM C2   CL2    -0.12 !          H2A-C2-H2B
+ATOM H2A  HLC     0.06 !               |
+ATOM H2B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C3   CL2    -0.12 !          H3A-C3-H3B
+ATOM H3A  HLC     0.06 !               |
+ATOM H3B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C4   CL2    -0.12 !          H4A-C4-H4B
+ATOM H4A  HLC     0.06 !               |
+ATOM H4B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C5   CL2    -0.12 !          H5A-C5-H5B
+ATOM H5A  HLC     0.06 !               |
+ATOM H5B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C6   CL2    -0.12 !          H6A-C6-H6B
+ATOM H6A  HLC     0.06 !               |
+ATOM H6B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C7   CL2    -0.12 !          H7A-C7-H7B
+ATOM H7A  HLC     0.06 !               |
+ATOM H7B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C8   CL2    -0.12 !          H8A-C8-H8B
+ATOM H8A  HLC     0.06 !               |
+ATOM H8B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C9   CL2    -0.12 !          H9A-C9-H9B
+ATOM H9A  HLC     0.06 !               |
+ATOM H9B  HLC     0.06 !               |
+GROUP                  !               |
+ATOM C10  CL2    -0.12 !         H10A-C10-H10B
+ATOM H10A HLC     0.06 !               |
+ATOM H10B HLC     0.06 !               |
+GROUP                  !               |
+ATOM C11  CL2    -0.12 !         H11A-C11-H11B
+ATOM H11A HLC     0.06 !               |
+ATOM H11B HLC     0.06 !               |
+GROUP                  !               |
+ATOM C12  CL2    -0.12 !         H12A-C12-H12B
+ATOM H12A HLC     0.06 !               |
+ATOM H12B HLC     0.06 !               |
+GROUP                  !               |
+ATOM C13  CL2    -0.12 !         H13A-C13-H13B
+ATOM H13A HLC     0.06 !               |
+ATOM H13B HLC     0.06 !               |
+GROUP                  !               |
+ATOM C14  CL3    -0.18 !         H14A-C14-H14B
+ATOM H14A HLC     0.06 !               |
+ATOM H14B HLC     0.06 !               |
+ATOM H14C HLC     0.06 !               H14C
+
+BOND N HN  N  CA
+BOND C  CA   C +N  CA HA1  CA HA2
+BOND N C1
+DOUBLE O  C
+
+DOUBLE C1  O1
+BOND  C1  C2  C2  H2A  C2  H2B
+BOND  C2  C3  C3  H3A  C3  H3B
+BOND  C3  C4  C4  H4A  C4  H4B
+BOND  C4  C5  C5  H5A  C5  H5B
+BOND  C5  C6  C6  H6A  C6  H6B
+BOND  C6  C7  C7  H7A  C7  H7B
+BOND  C7  C8  C8  H8A  C8  H8B
+BOND  C8  C9  C9  H9A  C9  H9B
+BOND  C9  C10 C10 H10A C10 H10B
+BOND  C10 C11 C11 H11A C11 H11B
+BOND  C11 C12 C12 H12A C12 H12B
+BOND  C12 C13 C13 H13A C13 H13B
+BOND  C13 C14 C14 H14A C14 H14B C14 H14C
+IMPR C1 O1 N C2
+IMPR N C1 CA HN  C CA +N O
+!IMPR C CA +N O
+
+DONOR HN N
+ACCEPTOR O C
+ACCEPTOR O1 C1
+
+IC C1   CA   *N   HN    1.3479 123.93  180.00 114.77  0.9982
+IC C1   N    CA   C     1.3479 123.93  180.00 105.89  1.5202
+IC N    CA   C    +N    1.4533 105.89  180.00 118.30  1.3498
+IC +N   CA   *C   O     1.3498 118.30  180.00 120.59  1.2306
+IC CA   C    +N   +CA   1.5202 118.30  180.00 124.50  1.4548
+IC N    C    *CA  HA1   1.4553 108.9400  117.8600 108.0300  1.0814
+IC N    C    *CA  HA2   1.4553 108.9400 -118.1200 107.9500  1.0817
+
+IC N    CA   C    O     1.3945 106.38    5.30 121.98  1.2956
+IC CA   N    C1   C2    1.4553 108.64  158.80 115.77  1.5434
+IC C2   N   *C1  O1     1.4534 115.77 -174.68 119.62  1.2281
+IC N    C1   C2   C3    1.4553 108.77  152.55 111.56  1.5614
+IC C3   C1   *C2  H2A   1.5614 111.56 -126.88 116.60  1.0567
+IC H2A  C1   *C2  H2B   1.0567 116.60 -120.46 107.56  1.0927
+IC C1   C2   C3   C4    1.5434 111.56  178.17 112.38  1.5543
+IC C4   C2   *C3  H3A   1.5543 112.38 -115.58 110.36  1.0691
+IC H3A  C2   *C3  H3B   1.0691 110.36 -116.74 109.97  1.1344
+IC C2   C3   C4   C5    1.5614 112.38  174.26 114.93  1.5290
+IC C5   C3   *C4  H4A   1.5290 114.93 -117.82 107.19  1.0636
+IC H4A  C3   *C4  H4B   1.0636 107.19 -118.11 109.41  1.1180
+IC C3   C4   C5   C6    1.5543 114.93  139.45 116.26  1.5437
+IC C6   C4   *C5  H5A   1.5437 116.26 -115.47 116.05  1.1088
+IC H5A  C4   *C5  H5B   1.1088 116.05 -122.13 108.08  1.1320
+IC C4   C5   C6   C7    1.5290 116.26  159.28 113.90  1.5449
+IC C7   C5   *C6  H6A   1.5449 113.90 -120.21 112.43  1.0817
+IC H6A  C5   *C6  H6B   1.0817 112.43 -112.42 110.24  1.0503
+IC C5   C6   C7   C8    1.5437 113.90  167.68 115.30  1.5615
+IC C8   C6   *C7  H7A   1.5615 115.30 -116.36 108.50  1.1480
+IC H7A  C6   *C7  H7B   1.1480 108.50 -115.94 110.56  1.1231
+IC C6   C7   C8   C9    1.5449 115.30  165.37 111.83  1.5514
+IC C9   C7   *C8  H8A   1.5514 111.83 -113.43 111.91  1.1377
+IC H8A  C7   *C8  H8B   1.1377 111.91 -118.34 108.18  1.0480
+IC C7   C8   C9   C10   1.5615 111.83  176.59 110.57  1.5526
+IC C10  C8   *C9  H9A   1.5526 110.57 -129.97 113.53  1.1310
+IC H9A  C8   *C9  H9B   1.1310 113.53 -109.70 107.39  1.1594
+IC C8   C9   C10  C11   1.5514 110.57 -177.26 112.26  1.5783
+IC C11  C9   *C10 H10A  1.5783 112.26 -123.45 106.63  1.1533
+IC H10A C9   *C10 H10B  1.1533 106.63 -118.25 115.85  1.0771
+IC C9   C10  C11  C12   1.5526 112.26 -163.15 112.58  1.5528
+IC C12  C10  *C11 H11A  1.5528 112.58 -121.90 102.65  1.0764
+IC H11A C10  *C11 H11B  1.0764 102.65 -122.46 109.95  1.1248
+IC C10  C11  C12  C13   1.5783 112.58 -179.16 115.34  1.5375
+IC C13  C11  *C12 H12A  1.5375 115.34 -129.55 111.80  1.0856
+IC H12A C11  *C12 H12B  1.0856 111.80 -109.80 105.66  1.0741
+IC C11  C12  C13  C14   1.5528 115.34 -178.59 114.71  1.5546
+IC C14  C12  *C13 H13A  1.5546 114.71 -121.77 106.42  1.0758
+IC H13A C12  *C13 H13B  1.0758 106.42 -114.53 102.53  1.0909
+IC C12  C13  C14  H14A  1.5331 109.01  -61.78 119.36  1.0834
+IC H14A C13  *C14 H14B  1.0834 119.36  138.24 116.61  1.0932
+IC H14A C13  *C14 H14C  1.0834 119.36 -107.69 109.08  1.1555
+
+
+PRES CTM          0.14 ! Methylated Cterminus
+GROUP                  ! 
+ATOM CA   C224    0.14 ! 
+ATOM C    C465    0.510!   OT2--CT2-HT(1-3)
+ATOM OT1  O466   -0.430!  /
+ATOM OT2  O467   -0.330! -C
+ATOM CT2  C468    0.160!  \\
+ATOM HT1  H469    0.030!  OT1
+ATOM HT2  H469    0.030!
+ATOM HT3  H469    0.030!
+DELETE ATOM O          !
+BOND C OT2  OT2 CT2    !
+BOND CT2 HT1 CT2 HT2
+BOND CT2 HT3
+DOUBLE  C OT1
+IMPR OT2 C CA OT1
+ACCEPTOR OT1 C
+IC N    CA   C    OT2   0.0000  0.0000  180.0000  0.0000  0.0000
+IC OT2  CA   *C   OT1   0.0000  0.0000  180.0000  0.0000  0.0000
+IC CA   C    OT2  HT2   0.0000  0.0000  180.0000  0.0000  0.0000
+
+PRES COH          0.00 ! -OL C-terminus
+GROUP                  ! use in generate statement
+ATOM C    C157    0.145!
+ATOM HC1  H140    0.06 !             |
+ATOM HC2  H140    0.06 !
+GROUP                  ! HC1-CT-HC2
+ATOM OH   O154   -0.681!     |
+ATOM HO   H155    0.418!     OH
+                       !    / 
+BOND C  HC1 C  HC2     !  HO 
+BOND C  OH  OH HO      !
+  
+IC N    CA   C    HC1   0.0000  0.0000  120.0000  0.0000  0.0000
+IC N    CA   C    HC2   0.0000  0.0000  240.0000  0.0000  0.0000
+IC OH   CA   *C   O     0.0000  0.0000  180.0000  0.0000  0.0000
+IC CA   C    OH   HO   3 0.0000  0.0000  180.0000  0.0000  0.0000
+
+PRES SP1         -1.00  ! convert serine to dianionic phosphoserine
+                        ! use in a patch statement
+DELETE ATOM HG1
+GROUP
+ATOM CB   C157    0.145 !
+ATOM HB1  H140    0.06  !
+ATOM HB2  H140    0.06  !
+ATOM OG   O5447   -0.70  !maintain NA atom type
+ATOM P    P5449   1.677
+ATOM O1P  O5446   -0.95
+ATOM O2P  O5446   -0.95
+ATOM OT   O5450   -0.86
+ATOM H    H5448    0.418
+BOND OG P   P  OT  
+BOND P  O1P P  O2P
+BOND OT H
+ANGLE OG  P O1P OG P O2P
+ANGLE OG  P OT  O1P P O2P
+ANGLE O1P P OT O2P P OT
+ANGLE CB OG P P OT H
+DIHE CA CB OG P
+DIHE CB OG P  O1P
+DIHE CB OG P  O2P
+DIHE CB OG P  OT
+DIHE CB OG P  OT
+DIHE OG P OT H
+DIHE O1P P OT H
+DIHE O2P P OT H
+BILD CA    CB   OG  P      0.0000  000.00  180.00   000.00   0.0000
+BILD CB    OG   P   OT     0.0000  000.00  180.00   000.00   0.0000
+BILD OG    P    OT  HT     0.0000  000.00  180.00   000.00   0.0000
+BILD OG    OT   *P  O1P    0.0000  000.00 -120.00   000.00   0.0000
+BILD OG    OT   *P  O2P    0.0000  000.00  120.00   000.00   0.0000
+
+PRES SP2         -2.00  ! convert serine to dianionic phosphoserine
+                        ! use in a patch statement
+DELETE ATOM HG1
+GROUP
+ATOM CB   C157    0.145 !
+ATOM HB1  H140    0.06  !
+ATOM HB2  H140    0.06  !
+ATOM OG   O447   -0.70  !maintain NA atom type
+ATOM P    P5445   1.795
+ATOM O1P  O446   -1.12
+ATOM O2P  O446   -1.12
+ATOM OT   O446   -1.12
+BOND OG P   P  OT  
+BOND P  O1P P  O2P
+ANGLE OG  P O1P OG P O2P
+ANGLE OG  P OT  O1P P O2P
+ANGLE O1P P OT O2P P OT
+ANGLE CB OG P   
+DIHE CA CB OG P
+DIHE CB OG P  O1P
+DIHE CB OG P  O2P
+DIHE CB OG P  OT
+BILD CA    CB   OG  P      0.0000  000.00  180.00   000.00   0.0000
+BILD CB    OG   P   OT     0.0000  000.00  180.00   000.00   0.0000
+BILD OG    OT   *P  O1P    0.0000  000.00 -120.00   000.00   0.0000
+BILD OG    OT   *P  O2P    0.0000  000.00  120.00   000.00   0.0000
+
+PRES THP1        -2.00  ! convert threonine to dianionic phosphothreonine
+                        ! use in a patch statement
+DELETE ATOM HG1
+GROUP
+ATOM CB   C158    0.205  !
+ATOM HB   H140    0.06  !
+ATOM OG1  O5447   -0.70  !maintain NA atom type
+ATOM P    P5449   1.677
+ATOM O1P  O5446   -0.95
+ATOM O2P  O5446   -0.95
+ATOM OT   O5450   -0.86
+ATOM H    H5448    0.418
+BOND OG1 P   P OT  OT H
+BOND P O1P  P O2P
+ANGLE OG1 P O1P OG1 P O2P
+ANGLE OG1 P OT  O1P P O2P
+ANGLE O1P P OT  O2P P OT 
+ANGLE CB OG1 P  P OT H
+DIHE CA CB OG1 P
+DIHE CB OG1 P  O1P
+DIHE CB OG1 P  O2P
+DIHE CB OG1 P  OT
+DIHE OG1 P OT H
+DIHE O1P P OT H
+DIHE O2P P OT H
+BILD CA    CB   OG1 P      0.0000  000.00  180.00   000.00   0.0000
+BILD CB    OG1  P   OT     0.0000  000.00  180.00   000.00   0.0000
+BILD OG1   P    OT  H      0.0000  000.00  180.00   000.00   0.0000
+BILD OG1   OT   *P  O1P    0.0000  000.00 -120.00   000.00   0.0000
+BILD OG1   OT   *P  O2P    0.0000  000.00  120.00   000.00   0.0000
+
+PRES THP2        -2.00  ! convert threonine to dianionic phosphothreonine
+                        ! use in a patch statement
+DELETE ATOM HG1
+GROUP
+ATOM CB   C158    0.205  !
+ATOM HB   H140    0.06  !
+ATOM OG1  O447   -0.70  !maintain NA atom type
+ATOM P    P5445   1.795
+ATOM O1P  O446   -1.12
+ATOM O2P  O446   -1.12
+ATOM OT   O446   -1.12
+BOND OG1 P   P  OT  
+BOND P   O1P P  O2P
+ANGLE OG1 P O1P OG1 P O2P
+ANGLE OG1 P OT  O1P P O2P
+ANGLE O1P P OT  O2P P OT 
+ANGLE CB OG1 P 
+DIHE CA CB OG1 P
+DIHE CB OG1 P  O1P
+DIHE CB OG1 P  O2P
+DIHE CB OG1 P  OT
+BILD CA    CB   OG1 P      0.0000  000.00  180.00   000.00   0.0000
+BILD CB    OG1  P   OT     0.0000  000.00  180.00   000.00   0.0000
+BILD OG1   OT   *P  O1P    0.0000  000.00 -120.00   000.00   0.0000
+BILD OG1   OT   *P  O2P    0.0000  000.00  120.00   000.00   0.0000
+
+PRES TP2       -2.00  ! patch to convert tyrosine to
+                      ! dianionic phosphotyrosine
+DELE ATOM 1HH
+GROUP
+ATOM CE1 C145  -0.29
+ATOM HE1 H146   0.15
+GROUP
+ATOM CE2 C145  -0.29
+ATOM HE2 H146   0.15
+GROUP
+ATOM CZ  C166   0.525
+ATOM OH  O447   -0.68   ! NA ATOM TYPE
+ATOM P   P5445   1.795  ! NA ATOM TYPE
+ATOM O1P  O446   -1.12   ! NA ATOM TYPE
+ATOM O2P  O446   -1.12   ! NA ATOM TYPE
+ATOM OT  O446   -1.12   ! NA ATOM TYPE
+BOND P   OH     P   O1P    P   O2P    P   OT
+ANGLE OH  P O1P OH  P O2P
+ANGLE OH  P OT  O1P P O2P
+ANGLE O1P P OT  O2P P OT
+ANGLE CZ OH P  
+DIHE CE1 CZ OH P
+DIHE CE2 CZ OH P
+DIHE CZ OH P  O1P
+DIHE CZ OH P  O2P
+DIHE CZ OH P  OT
+BILD CE1   CZ   OH  P1     0.0000  000.00    0.00   000.00   0.0000
+BILD CZ    OH   P1  O2     0.0000  000.00  180.00   000.00   0.0000
+BILD O2    OH   *P1 O3     0.0000  000.00 -115.82   000.00   0.0000
+BILD O2    OH   *P1 O4     0.0000  000.00  115.90   000.00   0.0000
+
+END
