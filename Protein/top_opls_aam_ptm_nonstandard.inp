@@ -1,13 +1,12 @@
-*>>>>>>>> OPLS-AA/M All-atom Toplogy File for Proteins, <<<<<<<<
-*>>>>>>>>>>>>>>> Nucleosides and Nucleotides <<<<<<<<<<<<<<<<<<<
-*>>>>>>>>>>>>>>>>>>>>>>>>  Jan 2017  <<<<<<<<<<<<<<<<<<<<<<<<<<<
-*>>>>>>>>>>> Edited by M.J. Robertson to OPLS-AA/M <<<<<<<<<<<<<
-*>>>>>>>>>>>>>>>>  email: michael.robertson at yale.edu  <<<<<<<
+*>>>>>>>> OPLS-AA/M All-atom Toplogy File for Proteins  <<<<<<<<
+*>>>>>>>>>>>>>>> Post Translational & Nonstnandard <<<<<<<<<<<<<
+*>>>>>>>>>>>>>>>>>>>>>>>>  Jan 2022  <<<<<<<<<<<<<<<<<<<<<<<<<<<
+*>>>>>>>>>>> Made by M.J. Robertson to OPLS-AA/M   <<<<<<<<<<<<<
+*>>>>>>>>>>>>>>>>  email: mjrober at stanford.edu  <<<<<<<<<<<<<
 *
 40 1
 
 !README for CHARMM topology/parameter files for OPLS-AA/M
-!top_opls_aam_na.inp and par_opls_aam_na.inp
 !** reference for OPLS-AA for proteins: 
 !** Jorgensen, W.L. et al., J. Am. Chem. Soc. 118:11225-11236 (1996) 
 !** reference for OPLS-AA/M:
@@ -16,9 +15,6 @@
 !** Robertson, M.J., et al., Chem. Phys. Lett., (2017)
 !and see additional reference below
 !
-!NB: The nucleoside and nucleotide parameters are currently not suitable
-!for DNA or RNA.  The majority of parameters for the phosphodiester linkage
-!are not available, such that the biopolymers cannot be simulated.
 !
 !PLEASE ENSURE USE OF PROPER LJ COMBINING RULES AND 1-4 SCALING TO ENSURE
 !PROPER IMPLEMENTATION OF THE OPLS-AA/M FORCE FIELD
@@ -34,16 +30,10 @@
 !OPLS option in pref.dat can still use all other previously released topology and
 !parameter files (CHARMM22, CHARMM19, etc.).
 !
-!Atom and residue names in the OPLS-AA topology file agree with that in CHARMM22.
-!Consequently, any CHARMM script that reads CHARMM22 topology and parameter files
-!can be converted to using OPLS-AA by adjusting the appropriate file OPEN
 !statements.  The atom types have the OPLS atom type embedded within them for
 !easy cross-reference.  For example, type H140 in opls.rtf and opls.prm is 
 !type 140 the OPLS-AA parameter files available from Prof. Jorgensen.
 !
-!The topology and parameter files here include only the protein portion of the
-!OPLS-AA force field.  User-defined topology and parameter files are required for
-!other functionalities.
 !
 !While the OPLS-AA topology and parameter files are compatible with all
 !functionality within CHARMM that is also compatible with CHARMM22, minimizations
@@ -58,7 +48,6 @@
 !**** Dept. of Chemistry
 !**** Yale University
 !
-!**** Files checked by adm jr. 2017/1
 !
 !Additional References
 !
